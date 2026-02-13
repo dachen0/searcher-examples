@@ -1,6 +1,6 @@
 [workspace]
 members = [
-    "jito_protos",
+    "harmonic_protos",
     "searcher_client",
 ]
 resolver = "2"

@@ -1,12 +1,12 @@
 [package]
-name = "jito-searcher-client"
+name = "harmonic-searcher-client"
 version = "0.1.0"
 edition = "2021"
 description = "Wrapper around the generated gRPC. Adds auth and retry semantics."
 
 [dependencies]
 futures-util = "0.3.28"
-jito-protos = { path = "../jito_protos" }
+harmonic-protos = { path = "../harmonic_protos" }
 log = "0.4"
 prost-types = "0.12"
 solana-client = "=2.1"

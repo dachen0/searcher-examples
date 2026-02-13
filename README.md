@@ -35,7 +35,7 @@ On-chain addresses for tip programs and tip accounts can be found here: https://
 ### cli
 This is a rust program that exercises functionality inside the searcher API so you can explore the functionality. It provides an intuitive CLI-based interface for connecting to the block engine and sending test bundles.
 
-### jito_protos
+### harmonic_protos
 An example on how to build the protobufs that define the messages and services one can use to talk to our block engine.
 
 ### searcher_client

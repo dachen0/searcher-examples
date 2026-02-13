@@ -1518,6 +1518,37 @@ dependencies = [
 ]
 
 [[package]]
+name = "harmonic-protos"
+version = "0.1.0"
+dependencies = [
+ "bincode",
+ "bytes",
+ "prost",
+ "prost-types",
+ "solana-perf",
+ "solana-sdk",
+ "tonic",
+ "tonic-build",
+]
+
+[[package]]
+name = "harmonic-searcher-client"
+version = "0.1.0"
+dependencies = [
+ "futures-util",
+ "harmonic-protos",
+ "log",
+ "prost-types",
+ "solana-client",
+ "solana-metrics",
+ "solana-sdk",
+ "solana-transaction-status",
+ "thiserror 1.0.69",
+ "tokio",
+ "tonic",
+]
+
+[[package]]
 name = "hash32"
 version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1925,37 +1956,6 @@ name = "itoa"
 version = "1.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4a5f13b858c8d314ee3e8f639011f7ccefe71f97f96e50151fb991f267928e2c"
-
-[[package]]
-name = "jito-protos"
-version = "0.1.0"
-dependencies = [
- "bincode",
- "bytes",
- "prost",
- "prost-types",
- "solana-perf",
- "solana-sdk",
- "tonic",
- "tonic-build",
-]
-
-[[package]]
-name = "jito-searcher-client"
-version = "0.1.0"
-dependencies = [
- "futures-util",
- "jito-protos",
- "log",
- "prost-types",
- "solana-client",
- "solana-metrics",
- "solana-sdk",
- "solana-transaction-status",
- "thiserror 1.0.69",
- "tokio",
- "tonic",
-]
 
 [[package]]
 name = "jni"

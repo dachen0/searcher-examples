@@ -1,3 +1,3 @@
-[submodule "jito_protos/protos"]
-	path = jito_protos/protos
+[submodule "harmonic_protos/protos"]
+	path = harmonic_protos/protos
 	url = https://github.com/harmonic/searcher-protos

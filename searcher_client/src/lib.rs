@@ -1,6 +1,6 @@
 use std::sync::Arc;
 
-use jito_protos::{
+use harmonic_protos::{
     auth::{auth_service_client::AuthServiceClient, Role},
     bundle::Bundle,
     convert::proto_packet_from_versioned_tx,
