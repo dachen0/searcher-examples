@@ -4,16 +4,13 @@ fn main() {
     configure()
         .compile(
             &[
-                "protos/auth.proto",
-                "protos/block.proto",
-                "protos/block_engine.proto",
-                "protos/bundle.proto",
-                "protos/packet.proto",
-                "protos/relayer.proto",
-                "protos/searcher.proto",
-                "protos/shared.proto",
+                "protos/proto/auth.proto",
+                "protos/proto/bundle.proto",
+                "protos/proto/packet.proto",
+                "protos/proto/searcher.proto",
+                "protos/proto/shared.proto",
             ],
-            &["protos"],
+            &["protos/proto"],
         )
         .unwrap();
 }

@@ -1,7 +1,6 @@
 use std::{
     cmp::min,
-    net::{AddrParseError, IpAddr, Ipv4Addr, SocketAddr},
-    str::FromStr,
+    net::{IpAddr, Ipv4Addr},
 };
 
 use bincode::serialize;
@@ -13,10 +12,9 @@ use solana_sdk::{
 
 use crate::{
     packet::{
-        Meta as ProtoMeta, Packet as ProtoPacket, PacketBatch as ProtoPacketBatch,
+        Meta as ProtoMeta, Packet as ProtoPacket,
         PacketFlags as ProtoPacketFlags,
     },
-    shared::Socket,
 };
 
 /// Converts a Solana packet to a protobuf packet
@@ -83,15 +81,6 @@ pub fn proto_packet_to_packet(p: &ProtoPacket) -> Packet {
     packet
 }
 
-pub fn proto_packet_batch_to_packets(
-    packet_batch: ProtoPacketBatch,
-) -> impl Iterator<Item = Packet> {
-    packet_batch
-        .packets
-        .into_iter()
-        .map(|proto_packet| proto_packet_to_packet(&proto_packet))
-}
-
 /// Converts a protobuf packet to a VersionedTransaction
 pub fn versioned_tx_from_packet(p: &ProtoPacket) -> Option<VersionedTransaction> {
     let mut data = [0; PACKET_DATA_SIZE];
@@ -128,15 +117,6 @@ pub fn proto_packet_from_versioned_tx(tx: &VersionedTransaction) -> ProtoPacket 
             flags: None,
             sender_stake: 0,
         }),
-    }
-}
-
-/// Converts a GRPC Socket to stdlib SocketAddr
-impl TryFrom<&Socket> for SocketAddr {
-    type Error = AddrParseError;
-
-    fn try_from(value: &Socket) -> Result<Self, Self::Error> {
-        IpAddr::from_str(&value.ip).map(|ip| SocketAddr::new(ip, value.port as u16))
     }
 }
 
