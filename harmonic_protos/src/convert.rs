@@ -4,48 +4,13 @@ use std::{
 };
 
 use bincode::serialize;
-use solana_perf::packet::{Packet, PacketBatch, PACKET_DATA_SIZE};
+use solana_perf::packet::{Packet, PACKET_DATA_SIZE};
 use solana_sdk::{
     packet::{Meta, PacketFlags},
     transaction::VersionedTransaction,
 };
 
-use crate::{
-    packet::{
-        Meta as ProtoMeta, Packet as ProtoPacket,
-        PacketFlags as ProtoPacketFlags,
-    },
-};
-
-/// Converts a Solana packet to a protobuf packet
-/// NOTE: the packet.data() function will filter packets marked for discard
-pub fn packet_to_proto_packet(p: &Packet) -> Option<ProtoPacket> {
-    Some(ProtoPacket {
-        data: p.data(..)?.to_vec(),
-        meta: Some(ProtoMeta {
-            size: p.meta().size as u64,
-            addr: p.meta().addr.to_string(),
-            port: p.meta().port as u32,
-            flags: Some(ProtoPacketFlags {
-                discard: p.meta().discard(),
-                forwarded: p.meta().forwarded(),
-                repair: p.meta().repair(),
-                simple_vote_tx: p.meta().is_simple_vote_tx(),
-                tracer_packet: p.meta().is_tracer_packet(),
-                from_staked_node: p.meta().is_from_staked_node(),
-            }),
-            sender_stake: 0,
-        }),
-    })
-}
-
-pub fn packet_batches_to_proto_packets(
-    batches: &[PacketBatch],
-) -> impl Iterator<Item = ProtoPacket> + '_ {
-    batches
-        .iter()
-        .flat_map(|b| b.iter().filter_map(packet_to_proto_packet))
-}
+use crate::packet::{Meta as ProtoMeta, Packet as ProtoPacket};
 
 /// converts from a protobuf packet to packet
 pub fn proto_packet_to_packet(p: &ProtoPacket) -> Packet {

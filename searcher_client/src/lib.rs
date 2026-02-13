@@ -9,10 +9,7 @@ use harmonic_protos::{
     },
 };
 use log::info;
-use solana_sdk::{
-    signature::Keypair,
-    transaction::VersionedTransaction,
-};
+use solana_sdk::{signature::Keypair, transaction::VersionedTransaction};
 use thiserror::Error;
 use tonic::{
     codegen::{Body, Bytes, InterceptedService, StdError},
@@ -46,6 +43,7 @@ pub enum BundleRejectionError {
 }
 
 pub type BlockEngineConnectionResult<T> = Result<T, BlockEngineConnectionError>;
+pub type HarmonicClient = SearcherServiceClient<InterceptedService<Channel, ClientInterceptor>>;
 
 pub async fn get_searcher_client_auth(
     block_engine_url: &str,
